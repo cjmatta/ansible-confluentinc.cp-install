@@ -1,0 +1,34 @@
+---
+# defaults file for cp-common
+confluent_user: kadmin
+confluent_group: kadmin
+cp_version: "4.0.0"
+cp_full_name: "{{ cp_version }}-enterprise"
+
+cp_download:
+  4.0.0-enterprise:
+    url: http://packages.confluent.io/archive/4.0/confluent-4.0.0-2.11.tar.gz
+    filename: confluent-4.0.0-2.11.tar.gz
+    sha256sum: 205ddded16acd451fa65be646d0627bcdb7af991ccaad36f8de626c3cea6789b
+    
+  3.3.0-enterprise:
+    url: http://packages.confluent.io/archive/3.3/confluent-3.3.0-2.11.tar.gz
+    filename: confluent-3.3.0-2.11.tar.gz
+    sha256sum: f4b3e940766e72a4be84acc0f967107cca4a2eed52b2709dad4dda063b3e7364
+
+  3.3.0-oss:
+    url: http://packages.confluent.io/archive/3.3/confluent-oss-3.3.0-2.11.tar.gz
+    filename: confluent-oss-3.3.0-2.11.tar.gz
+    sha256sum: 193154f716c2a5bbaaf5bad83c2cbadc66351e319ea0133fceae58d34d671623
+
+  3.2.2-enterprise:
+    url: http://packages.confluent.io/archive/3.2/confluent-3.2.2-2.11.tar.gz
+    filename: confluent-3.2.2-2.11.tar.gz
+    sha256sum: 4b5e1deeef5ae278d08da2325826acfca6e369afdb24796d357311ee659c7913
+
+  3.2.2-oss:
+    url: http://packages.confluent.io/archive/3.2/confluent-oss-3.2.2-2.11.tar.gz
+    filename: confluent-oss-3.2.2-2.11.tar.gz
+    sha256sum: 65f165228d691bb3b28590d85697b182657ee7cc12e8425c70c40f783e1ce2a4
+
+proxy_env: {}

@@ -1,0 +1,45 @@
+---
+# tasks file for cp-common
+- name: Create Confluent group
+  become: yes
+  become_user: root
+  group:
+    name: "{{ confluent_group }}"
+    state: present
+
+- name: Create Confluent user
+  become: yes
+  become_user: root
+  user:
+    name: "{{ confluent_user }}"
+    group: "{{ confluent_group }}"
+    createhome: no
+    state: present
+
+- name: Download Confluent Platform
+  environment: "{{ proxy_env }}"
+  get_url:
+    dest: /tmp
+    url: "{{ cp_download[cp_full_name].url }}"
+    sha256sum: "{{ cp_download[cp_full_name].sha256sum }}"
+
+- name: Unarchive Confluent Platform tar
+  become: yes
+  become_user: root
+  unarchive:
+    copy: no
+    src: /tmp/{{ cp_download[cp_full_name].filename }}
+    dest: /opt
+    mode: 0755
+    owner: "{{ confluent_user }}"
+    group: "{{ confluent_group }}"
+
+- name: link CP installation to /opt/confluent
+  become: yes
+  become_user: root
+  file:
+    state: link
+    src: /opt/confluent-{{ cp_version }}
+    path: /opt/confluent
+    owner: "{{ confluent_user }}"
+    group: "{{ confluent_group }}"
